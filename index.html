@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Milanto Francia</title>
     <style>
-        /* --- VARIABLES & THEME --- */
+        /* --- VARIABLE & THEME --- */
         :root {
             --primary: #4834d4;
             --secondary: #686de0;
@@ -74,7 +74,7 @@
             align-items: center;
         }
 
-        /* PHOTO DE PROFIL OPTIMISÉE */
+        /* PHOTO DE PROFIL */
         .profile-img {
             width: 180px;
             height: 180px;
@@ -85,27 +85,19 @@
             box-shadow: 0 15px 35px rgba(72, 52, 212, 0.4);
             overflow: hidden;
             transition: 0.5s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .profile-img img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Empêche la déformation */
+            object-fit: cover;
             object-position: center;
-            border-radius: inherit; /* Suit la forme de l'animation blob */
-            transition: filter 0.3s, transform 0.3s;
+            border-radius: inherit;
         }
 
         .profile-img:hover {
             transform: scale(1.05) rotate(5deg);
             box-shadow: 0 20px 45px rgba(0, 210, 255, 0.5);
-        }
-
-        .profile-img:hover img {
-            filter: blur(0.5px); /* Effet organique suggéré */
         }
 
         .name-container h1 {
@@ -137,7 +129,6 @@
             border: none;
             box-shadow: 0 10px 20px rgba(72, 52, 212, 0.3);
             transition: 0.3s;
-            text-decoration: none;
         }
 
         .position:hover {
@@ -267,18 +258,18 @@
 <div class="cv-container">
     <header class="header">
         <div class="profile-img">
-            <img src="https://raw.githubusercontent.com/Milanto-Francia-/Milanto-Francia-/main/milanto3412.jpg" alt="Milanto Francia">
+            <img src="1772472238307.png" alt="Andrianaina Rakotoarison Milanto Francia">
         </div>
         <div class="name-container">
             <h1>ANDRIANAINA RAKOTOARISON</h1>
             <span class="surname">Milanto Francia</span>
         </div>
-        <a href="#contact" class="position">🚀 Développeur Web Fullstack</a>
+        <p class="position">🚀 Développeur Web Fullstack</p>
     </header>
 
     <div class="main-content">
         <aside class="sidebar">
-            <section class="section" id="contact">
+            <section class="section">
                 <h2>Contact</h2>
                 <div class="contact-item">
                     <span class="contact-icon">📍</span>
@@ -294,7 +285,7 @@
                 </div>
                 <div class="contact-item">
                     <span class="contact-icon">🌐</span>
-                    <a href="https://www.facebook.com/profile.php?id=61579168064326" class="contact-link" target="_blank">Facebook Profil</a>
+                    <a href="https://www.facebook.com/profile.php?id=61579168064326" class="contact-link" target="_blank">Profil Facebook</a>
                 </div>
             </section>
 
