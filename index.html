@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Milanto Francia</title>
     <style>
-        /* --- VARIABLE & THEME --- */
+        /* --- VARIABLES & THEME --- */
         :root {
             --primary: #4834d4;
             --secondary: #686de0;
@@ -74,6 +74,7 @@
             align-items: center;
         }
 
+        /* PHOTO DE PROFIL OPTIMISÉE */
         .profile-img {
             width: 180px;
             height: 180px;
@@ -84,20 +85,27 @@
             box-shadow: 0 15px 35px rgba(72, 52, 212, 0.4);
             overflow: hidden;
             transition: 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .profile-img img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            /* MODIFICATION ICI : Ajustement pour centrer le visage sur ta photo spécifique */
-            object-position: center 20%; 
-            border-radius: inherit;
+            object-fit: cover; /* Empêche la déformation */
+            object-position: center;
+            border-radius: inherit; /* Suit la forme de l'animation blob */
+            transition: filter 0.3s, transform 0.3s;
         }
 
         .profile-img:hover {
             transform: scale(1.05) rotate(5deg);
             box-shadow: 0 20px 45px rgba(0, 210, 255, 0.5);
+        }
+
+        .profile-img:hover img {
+            filter: blur(0.5px); /* Effet organique suggéré */
         }
 
         .name-container h1 {
@@ -126,8 +134,15 @@
             font-size: 16px;
             font-weight: 600;
             margin-top: 25px;
+            border: none;
             box-shadow: 0 10px 20px rgba(72, 52, 212, 0.3);
             transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .position:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.4);
         }
 
         /* --- LAYOUT --- */
@@ -146,8 +161,13 @@
             background: rgba(255, 255, 255, 0.01);
         }
 
-        .content { padding: 40px; }
-        .section { margin-bottom: 45px; }
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
 
         .section h2 {
             font-size: 16px;
@@ -167,7 +187,7 @@
             margin-left: 15px;
         }
 
-        /* --- CARDS --- */
+        /* --- CARDS 3D --- */
         .item-card {
             background: var(--glass);
             border: 1px solid var(--border-glass);
@@ -175,12 +195,14 @@
             padding: 25px;
             margin-bottom: 25px;
             transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform-style: preserve-3d;
         }
 
         .item-card:hover {
-            transform: translateY(-5px);
+            transform: rotateY(8deg) rotateX(2deg) translateY(-5px);
             background: rgba(255, 255, 255, 0.08);
             border-color: var(--accent);
+            box-shadow: -15px 20px 40px rgba(0,0,0,0.4);
         }
 
         .project-img-container {
@@ -192,11 +214,26 @@
             background: #1e293b;
         }
 
-        .project-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .project-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .item-card:hover .project-img-container img {
+            transform: scale(1.1);
+        }
 
         .item-title { font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 5px; }
         .item-subtitle { color: var(--accent); font-weight: 500; font-size: 14px; margin-bottom: 10px; }
         .item-period { font-size: 12px; color: var(--text-dim); }
+
+        /* --- CONTACT & SKILLS --- */
+        .contact-item { margin-bottom: 18px; display: flex; align-items: center; }
+        .contact-icon { margin-right: 12px; opacity: 0.8; }
+        .contact-link { color: var(--text-light); text-decoration: none; transition: 0.3s; }
+        .contact-link:hover { color: var(--accent); }
 
         .tag {
             display: inline-block;
@@ -207,12 +244,21 @@
             border-radius: 8px;
             font-size: 12px;
             margin: 0 8px 10px 0;
+            transition: 0.3s;
+        }
+
+        .tag:hover {
+            background: var(--primary);
+            transform: translateZ(20px);
+            border-color: var(--accent);
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 850px) {
             .main-content { grid-template-columns: 1fr; }
             .sidebar { border-right: none; border-bottom: 1px solid var(--border-glass); }
+            .cv-container { margin: 10px; }
+            .header { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -221,22 +267,35 @@
 <div class="cv-container">
     <header class="header">
         <div class="profile-img">
-            <img src="milanto3412.jpg" alt="Andrianaina Rakotoarison Milanto Francia">
+            <img src="https://raw.githubusercontent.com/Milanto-Francia-/Milanto-Francia-/main/milanto3412.jpg" alt="Milanto Francia">
         </div>
         <div class="name-container">
             <h1>ANDRIANAINA RAKOTOARISON</h1>
             <span class="surname">Milanto Francia</span>
         </div>
-        <p class="position">🚀 Développeur Web Fullstack</p>
+        <a href="#contact" class="position">🚀 Développeur Web Fullstack</a>
     </header>
 
     <div class="main-content">
         <aside class="sidebar">
-            <section class="section">
+            <section class="section" id="contact">
                 <h2>Contact</h2>
-                <p>📍 Fianarantsoa, Madagascar</p>
-                <p>📞 033 16 164 92</p>
-                <p>✉️ milantofrancia@gmail.com</p>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span>Fianarantsoa, Madagascar</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <a href="https://wa.me/261331616492" class="contact-link">033 16 164 92</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <a href="mailto:milantofrancia@gmail.com" class="contact-link">milantofrancia@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🌐</span>
+                    <a href="https://www.facebook.com/profile.php?id=61579168064326" class="contact-link" target="_blank">Facebook Profil</a>
+                </div>
             </section>
 
             <section class="section">
@@ -247,13 +306,15 @@
                     <span class="tag">React.js</span>
                     <span class="tag">Node.js</span>
                     <span class="tag">Git & GitHub</span>
+                    <span class="tag">SQL / NoSQL</span>
                 </div>
             </section>
 
             <section class="section">
                 <h2>Langues</h2>
-                <p>🇫🇷 Français : Courant</p>
-                <p>🇬🇧 Anglais : Intermédiaire</p>
+                <p>🇫🇷 <strong>Français :</strong> Courant</p>
+                <p>🇬🇧 <strong>Anglais :</strong> Intermédiaire</p>
+                <p>🇩🇪 <strong>Allemand :</strong> Notions</p>
             </section>
         </aside>
 
@@ -265,13 +326,23 @@
 
             <section class="section">
                 <h2>Projets Réalisés</h2>
+                
                 <div class="item-card">
                     <div class="project-img-container">
                         <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500" alt="Code Preview">
                     </div>
                     <div class="item-title">📁 Portfolio Personnel</div>
                     <div class="item-subtitle">HTML, CSS 3D, JS</div>
-                    <p style="font-size: 14px; color: var(--text-dim);">Interface immersive avec glassmorphism et animations CSS avancées.</p>
+                    <p style="font-size: 14px; color: var(--text-dim);">Conception d'une interface immersive utilisant le glassmorphism et des animations CSS avancées.</p>
+                </div>
+
+                <div class="item-card">
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500" alt="App Preview">
+                    </div>
+                    <div class="item-title">📁 Application de Gestion</div>
+                    <div class="item-subtitle">React.js & Node.js</div>
+                    <p style="font-size: 14px; color: var(--text-dim);">Système complet de gestion de tâches avec base de données SQL.</p>
                 </div>
             </section>
 
@@ -280,7 +351,17 @@
                 <div class="item-card">
                     <div class="item-title">EMIT</div>
                     <div class="item-subtitle">Management et Innovation Technologique</div>
-                    <div class="item-period">2025 – Présent | Fianarantsoa</div>
+                    <div class="item-period">2025– Présent | Fianarantsoa</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Expérience</h2>
+                <div class="item-card">
+                    <div class="item-title">Développeur Front-end</div>
+                    <div class="item-subtitle">TechCorp (Stage / Freelance)</div>
+                    <div class="item-period">Janvier 2025 – Présent</div>
+                    <p style="font-size: 14px; color: var(--text-dim); margin-top: 10px;">Optimisation d'interfaces utilisateurs et création de composants réutilisables sous React.</p>
                 </div>
             </section>
         </main>
